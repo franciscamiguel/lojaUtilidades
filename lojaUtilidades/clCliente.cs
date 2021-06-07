@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 namespace lojaUtilidades
 {
-    public class clCliente
+     class clCliente : conectaBD
     {
         public int cod_cliente { get; set; }
         public string nome { get; set; }
@@ -19,15 +19,15 @@ namespace lojaUtilidades
         public string estado { get; set; }
         public string cep { get; set; }
 
-        conectaBD BancoDados = new conectaBD();
+       
 
         public int Salvar()
         {
             int id = 0;
             try
             {
-                BancoDados._sql = string.Format("INSERT INTO cliente(nome, cpf, telefone, email, logradouro, numero, bairro, cidade, estado, cep) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')", nome, cpf, telefone, email, logrado, numero, bairro, cidade, estado, cep) + "; SElECT SCOPE_IDENTITY();";
-                BancoDados.ExecutaComando(false, out id);
+                _sql = string.Format("INSERT INTO cliente(nome, cpf, telefone, email, logradouro, numero, bairro, cidade, estado, cep) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')", nome, cpf, telefone, email, logrado, numero, bairro, cidade, estado, cep) + "; SElECT SCOPE_IDENTITY();";
+                ExecutaComando(false, out id);
 
                 if (id > 0)
                 {
@@ -50,8 +50,8 @@ namespace lojaUtilidades
         {
             try
             {
-                BancoDados._sql = string.Format("SELECT * FROM cliente WHERE nome LIKE '%{0}%'", nomeCliente);
-                return BancoDados.ExecutaSelect();
+                _sql = string.Format("SELECT * FROM cliente WHERE nome LIKE '%{0}%'", nomeCliente);
+                return ExecutaSelect();
             }
             catch (Exception)
             {
@@ -70,13 +70,13 @@ namespace lojaUtilidades
             {
                 if (id < 0)
                 {
-                    BancoDados._sql = "SELECT * FROM cliente ORDER BY nome";
-                    return BancoDados.ExecutaSelect();
+                    _sql = "SELECT * FROM cliente ORDER BY nome";
+                    return ExecutaSelect();
                 }
                 else
                 {
-                    BancoDados._sql = string.Format("SELECT * FROM cliente  WHERE cod_cliente = {0}ORDER BY nome", id);
-                    return BancoDados.ExecutaSelect();
+                    _sql = string.Format("SELECT * FROM cliente  WHERE cod_cliente = {0}ORDER BY nome", id);
+                    return ExecutaSelect();
                 }
                
 
@@ -95,9 +95,9 @@ namespace lojaUtilidades
                 int exOK = 0;
 
 
-                BancoDados._sql = string.Format("UPDATE cliente SET nome = '{0}', cpf = '{1}', telefone = '{2}', email = '{3}', logradouro = '{4}', numero = '{5}', bairro = '{6}', cidade = '{7}', estado = '{8}', cep = '{9}' WHERE cod_cliente = '{10}'", nome, cpf, telefone, email, logrado, numero, bairro, cidade, estado, cep, cod_cliente);
+                _sql = string.Format("UPDATE cliente SET nome = '{0}', cpf = '{1}', telefone = '{2}', email = '{3}', logradouro = '{4}', numero = '{5}', bairro = '{6}', cidade = '{7}', estado = '{8}', cep = '{9}' WHERE cod_cliente = '{10}'", nome, cpf, telefone, email, logrado, numero, bairro, cidade, estado, cep, cod_cliente);
 
-                exOK = BancoDados.ExecutaComando(false);
+                exOK = ExecutaComando(false);
 
                 if (exOK < 0)
                 {
@@ -120,9 +120,9 @@ namespace lojaUtilidades
             try
             {
                 int exOK = 0;
-                BancoDados._sql = "DELETE FROM cliente where cOD_CLIENTE = " + id;
+                _sql = "DELETE FROM cliente where cOD_CLIENTE = " + id;
 
-                exOK = BancoDados.ExecutaComando(false);
+                exOK = ExecutaComando(false);
 
                 if (exOK < 0)
                 {

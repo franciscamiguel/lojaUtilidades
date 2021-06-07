@@ -1,33 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
-using System.IO;
 using System.Windows.Forms;
-
 
 namespace lojaUtilidades
 {
     class conectaBD
     {
         // Campo responsável pela definição da string de conexão
-        public string _strConexao;
+        protected string _strConexao;
 
         // Campo responsável pela definição da string do sql
-        public string _sql;
+        protected string _sql;
 
         // Campo responsável pelo comando de SQL a ser executado
         private SqlCommand _comandoSQL;
 
-        // Propriedade que expõe o campo para definição do comando de SQL a ser executado
-        private SqlCommand ComandoSQL
-        {
-            get { return _comandoSQL; }
-            set { _comandoSQL = value; }
-        }
+        //campo responsável pelo comando do SQL a ser executado
+        protected SqlDataReader Dr;
 
         // Campo que define o objeto de conexão
         private SqlConnection _conexao;
@@ -36,35 +26,17 @@ namespace lojaUtilidades
         private SqlTransaction _transacao;
 
         // Construtor que define uma string de conexão fixa e cria os objetos de conexão e comando
-        public conectaBD()
-
+        protected conectaBD()
         {
-         
-
-    _strConexao = @"DATA SOURCE= .\SQLEXPRESS; Initial Catalog=Loja;Persist Security Info=True;User ID=sa;Password=francisca92";
-            _conexao = new SqlConnection(_strConexao);
+                _strConexao = @"DATA SOURCE= .\SQLEXPRESS; Initial Catalog=Loja;Persist Security Info=True;User ID=sa;Password=francisca92";
+          _conexao = new SqlConnection(_strConexao);
             _comandoSQL = new SqlCommand();
             _comandoSQL.Connection = _conexao;
-        }
-
-        // Construtor que recebe por parametro a string de conexão a ser utilizada e cria
-        // os objetos de comando e conexão
-        public conectaBD(string stringConexao)
-        {
-            _strConexao = stringConexao;
-            _conexao = new SqlConnection(_strConexao);
-            _comandoSQL = new SqlCommand();
-            _comandoSQL.Connection = _conexao;
-        }
-
-        public void setParameter(String var, byte[] foto)
-        {
-            _comandoSQL.Parameters.AddWithValue(var, foto);
         }
 
         // Método para abrir a conexão com o banco de dados
         // true -> Com transação | false -> Sem transação
-        public bool AbreConexao(bool transacao)
+        protected bool AbreConexao(bool transacao)
         {
             try
             {
@@ -84,7 +56,7 @@ namespace lojaUtilidades
 
         // Métodos para fechar a conexão com o banco de dados
         //Retorna um booleano para indicar o resultado da operação
-        public bool FechaConexao()
+        protected bool FechaConexao()
         {
             try
             {
@@ -100,7 +72,7 @@ namespace lojaUtilidades
 
         // Finaliza uma transação
         // true -> Executa o commit | false -. Executa o rollback
-        public void FinalizaTransacao(bool commit)
+        protected void FinalizaTransacao(bool commit)
         {
             if (commit)
                 _transacao.Commit();
@@ -118,7 +90,7 @@ namespace lojaUtilidades
 
         // Método responsável pela execução dos comandos de Insert, Update e Delete
         //Retorna um número inteiro que indica a quantidade de linhas afetadas
-        public int ExecutaComando(bool transacao = false)
+        protected int ExecutaComando(bool transacao = false)
         {
             int retorno;
             AbreConexao(transacao);
@@ -142,7 +114,7 @@ namespace lojaUtilidades
 
         //Método responsável pela execução dos comandos de Insert com retorno do último código cadastrado
         //Retorna um número inteiro que indica a quantidade de linhas afetadas
-        public int ExecutaComando(bool transacao, out int ultimoCodigo)
+        protected int ExecutaComando(bool transacao, out int ultimoCodigo)
         {
             int retorno;
             ultimoCodigo = 0;
@@ -168,7 +140,7 @@ namespace lojaUtilidades
 
         //Método responsável pela execução dos comandos de Select
         //Retorna um DataTable com o resultado da operação
-        public DataTable ExecutaSelect()
+        protected DataTable ExecutaSelect()
         {
             AbreConexao(false);
             DataTable dt = new DataTable();
@@ -187,12 +159,26 @@ namespace lojaUtilidades
             }
             return dt;
         }
+        protected void executaselectfrom()
+        {
+            AbreConexao(false);
 
+            try
+            {
+                _comandoSQL.CommandText = _sql;
+                Dr = (_comandoSQL.ExecuteReader());
+            }
+            catch 
+            {
+
+                
+            }
+        }
         // Método que executa comandos de Select para retornos escalares, ou seja,
         // retorna a primeira linha e primeira coluna do resultado do comando de Select.
         // Para nosso exemplo, sempre convertemos esse valor para Double
         //Retorna a primeira linha e primeira coluna do resultado comando de Select</returns>
-        public double ExecutaScalar()
+        protected double ExecutaScalar()
         {
             AbreConexao(false);
             double retorno;
@@ -210,11 +196,6 @@ namespace lojaUtilidades
                 FechaConexao();
             }
             return retorno;
-        }
-
-        internal int ExecutaComando(bool p, out uint Id)
-        {
-            throw new NotImplementedException();
         }
 
     }

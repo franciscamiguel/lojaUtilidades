@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace lojaUtilidades
 {
-    public partial class FrmVendendor : Form
+    public partial class frmFornecedor : Form
     {
-        public FrmVendendor()
+        public frmFornecedor()
         {
             InitializeComponent();
         }
