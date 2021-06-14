@@ -114,7 +114,7 @@ namespace lojaUtilidades
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(249, 53);
+            this.label5.Location = new System.Drawing.Point(249, 78);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 15);
             this.label5.TabIndex = 8;
@@ -122,7 +122,7 @@ namespace lojaUtilidades
             // 
             // txtPreco
             // 
-            this.txtPreco.Location = new System.Drawing.Point(249, 71);
+            this.txtPreco.Location = new System.Drawing.Point(249, 105);
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(136, 23);
             this.txtPreco.TabIndex = 9;
