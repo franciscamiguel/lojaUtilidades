@@ -43,7 +43,7 @@ namespace lojaUtilidades
 
         private void button2_Click(object sender, EventArgs e) //btao salvar
         {
-            FrmCadastroCliente frm = new FrmCadastroCliente();
+            FrmClienteCadastro frm = new FrmClienteCadastro();
             frm.Text = "Cadastro de Novo Cliente";
             frm.ShowDialog();
             pesquisarClienteDgv(Convert.ToInt32(frm.txtId.Text));
@@ -66,7 +66,7 @@ namespace lojaUtilidades
             cliente.estado = linha[0].Cells[9].Value.ToString();
             cliente.cep = linha[0].Cells[10].Value.ToString();
 
-            using (var frm = new FrmCadastroCliente())
+            using (var frm = new FrmClienteCadastro())
             {
                 frm.Text = "Editar o Cliente" + cliente.nome;
                 
@@ -107,6 +107,16 @@ namespace lojaUtilidades
                 clCliente deletarcliente = new clCliente();
                 deletarcliente.Deletar((int)(linhaselecionada[0].Cells[0].Value));
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -65,5 +65,18 @@ namespace lojaUtilidades
         {
 
         }
+
+        private void tsmNovoFornecedor_Click(object sender, EventArgs e)
+        {
+            using (var frm = new frmFornecedor())
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

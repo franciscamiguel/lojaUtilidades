@@ -14,8 +14,8 @@ namespace lojaUtilidades
         public string nome { get; set; }
         public string cnpj { get; set; }
         public string telefone { get; set; }
-        public string produto { get; set; }
-        public string preco { get; set; }
+        public string categoria { get; set; }
+        public decimal preco { get; set; }
 
        
 
@@ -24,7 +24,7 @@ namespace lojaUtilidades
             int id = 0;
             try
             {
-              _sql = string.Format("INSERT INTO fornecedor (cod_fornecedor,nome, cnpj, telefone, produto, preco) VALUES ('{0}',  '{1}' '{2}' '{3}' '{4}' '{5}')" ,cod_fornecedor, nome, cnpj, telefone, produto, preco) + "; SElECT SCOPE_IDENTITY();";
+              _sql = string.Format("INSERT INTO fornecedor (nome, cnpj, telefone, produto, preco) VALUES ('{0}',  '{1}', '{2}','{3}','{4}')" ,nome, cnpj, telefone, categoria, preco) + "; SElECT SCOPE_IDENTITY();";
             ExecutaComando(false, out id);
 
                 if (id > 0)
@@ -63,7 +63,7 @@ namespace lojaUtilidades
         {
             try
             {
-                _sql = string.Format("SELECT * FROM  WHERE nome LIKE '%{0}%'", nomeFornecedor);
+                _sql = string.Format("SELECT * FROM  Fornecedor WHERE nome LIKE '%{0}%'", nomeFornecedor);
                 return ExecutaSelect();
             }
             catch (Exception)
@@ -108,7 +108,7 @@ namespace lojaUtilidades
                 int exOK = 0;
 
 
-                _sql = string.Format("UPDATE Fornecedor SET nome = '{0}',  telefone = '{1}' WHERE cod_vendedor = '{2}'", nome, telefone, cod_fornecedor);
+                _sql = string.Format("UPDATE Fornecedor SET nome = '{0}',telefone = '{1}',  cnpj = '{2}',produto ='{3}', preco = '{4}' WHERE cod_fornecedor = '{5}'", nome, telefone, cnpj, categoria, preco.ToString().Replace(",",".") ,cod_fornecedor);
 
                 exOK = ExecutaComando(false);
 

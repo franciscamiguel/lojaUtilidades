@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace lojaUtilidades
 {
-    public partial class FrmCadastroCliente : Form
+    public partial class FrmClienteCadastro : Form
     {
-        public FrmCadastroCliente()
+        public FrmClienteCadastro()
         {
             InitializeComponent();
         }

@@ -34,6 +34,8 @@ namespace lojaUtilidades
             this.tsmCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmNovoCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVendedor = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmFronecedor = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmNovoFornecedor = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSobre = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbVendedor = new System.Windows.Forms.ComboBox();
@@ -49,12 +51,14 @@ namespace lojaUtilidades
             this.tsmVendas,
             this.tsmCliente,
             this.tsmVendedor,
+            this.tsmFronecedor,
             this.tsmSobre});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(429, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // tsmVendas
             // 
@@ -83,6 +87,21 @@ namespace lojaUtilidades
             this.tsmVendedor.Name = "tsmVendedor";
             this.tsmVendedor.Size = new System.Drawing.Size(79, 20);
             this.tsmVendedor.Text = "VENDEDOR";
+            // 
+            // tsmFronecedor
+            // 
+            this.tsmFronecedor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmNovoFornecedor});
+            this.tsmFronecedor.Name = "tsmFronecedor";
+            this.tsmFronecedor.Size = new System.Drawing.Size(79, 20);
+            this.tsmFronecedor.Text = "Fornecedor";
+            // 
+            // tsmNovoFornecedor
+            // 
+            this.tsmNovoFornecedor.Name = "tsmNovoFornecedor";
+            this.tsmNovoFornecedor.Size = new System.Drawing.Size(103, 22);
+            this.tsmNovoFornecedor.Text = "Novo";
+            this.tsmNovoFornecedor.Click += new System.EventHandler(this.tsmNovoFornecedor_Click);
             // 
             // tsmSobre
             // 
@@ -173,6 +192,8 @@ namespace lojaUtilidades
         public System.Windows.Forms.ComboBox cmbVendedor;
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem tsmFronecedor;
+        private System.Windows.Forms.ToolStripMenuItem tsmNovoFornecedor;
     }
 }
 

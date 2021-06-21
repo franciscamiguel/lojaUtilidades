@@ -58,6 +58,7 @@ namespace lojaUtilidades
             this.label1.Size = new System.Drawing.Size(40, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtNome
             // 
@@ -97,6 +98,7 @@ namespace lojaUtilidades
             this.dgvCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCliente.Size = new System.Drawing.Size(776, 250);
             this.dgvCliente.TabIndex = 2;
+            this.dgvCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCliente_CellContentClick);
             // 
             // Codigo
             // 

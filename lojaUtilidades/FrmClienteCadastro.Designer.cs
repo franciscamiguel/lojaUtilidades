@@ -1,7 +1,7 @@
 ﻿
 namespace lojaUtilidades
 {
-    partial class FrmCadastroCliente
+    partial class FrmClienteCadastro
     {
         /// <summary>
         /// Required designer variable.
@@ -238,7 +238,7 @@ namespace lojaUtilidades
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(400, 298);
+            this.btnSalvar.Location = new System.Drawing.Point(474, 316);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 10;
@@ -248,7 +248,7 @@ namespace lojaUtilidades
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(400, 241);
+            this.btnCancelar.Location = new System.Drawing.Point(474, 267);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 11;
