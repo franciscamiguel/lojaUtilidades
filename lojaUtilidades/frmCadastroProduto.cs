@@ -16,5 +16,26 @@ namespace lojaUtilidades
         {
             InitializeComponent();
         }
+
+        private void btnsalvar_Click(object sender, EventArgs e)
+        {
+
+            ClProduto produto = new ClProduto();
+            produto.nome = txtnome.Text;
+            produto.tipo = txttipo.Text;
+            produto.valor = txtvalor.Text;
+            produto.departamento = txtdepartamento.Text;
+           
+
+            if (txtid.Text == "")
+            {
+                txtid.Text = produto.Salvar().ToString();
+            }
+            else
+            {
+                produto.cod_produto = Convert.ToInt32(txtid.Text);
+                produto.Atualizar();
+            }
+        }
     }
 }

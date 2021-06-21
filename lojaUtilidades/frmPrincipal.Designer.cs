@@ -42,6 +42,7 @@ namespace lojaUtilidades
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.chkAtivo = new System.Windows.Forms.CheckBox();
+            this.btnproduto = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,11 +158,22 @@ namespace lojaUtilidades
             this.chkAtivo.UseVisualStyleBackColor = true;
             this.chkAtivo.CheckedChanged += new System.EventHandler(this.chkAtivo_CheckedChanged);
             // 
+            // btnproduto
+            // 
+            this.btnproduto.Location = new System.Drawing.Point(293, 99);
+            this.btnproduto.Name = "btnproduto";
+            this.btnproduto.Size = new System.Drawing.Size(75, 23);
+            this.btnproduto.TabIndex = 6;
+            this.btnproduto.Text = "produto";
+            this.btnproduto.UseVisualStyleBackColor = true;
+            this.btnproduto.Click += new System.EventHandler(this.btnproduto_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(429, 179);
+            this.Controls.Add(this.btnproduto);
             this.Controls.Add(this.chkAtivo);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -194,6 +206,7 @@ namespace lojaUtilidades
         public System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem tsmFronecedor;
         private System.Windows.Forms.ToolStripMenuItem tsmNovoFornecedor;
+        private System.Windows.Forms.Button btnproduto;
     }
 }
 

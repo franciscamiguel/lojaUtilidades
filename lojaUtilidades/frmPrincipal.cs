@@ -78,5 +78,13 @@ namespace lojaUtilidades
         {
 
         }
+
+        private void btnproduto_Click(object sender, EventArgs e)
+        {
+            using (var frm = new frmProduto())
+            {
+                frm.ShowDialog();
+            }
+        }
     }
 }

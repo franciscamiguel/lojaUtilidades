@@ -12,7 +12,7 @@ namespace lojaUtilidades
     {
         private string _sql;
 
-        public int cod_cliente { get; set; }
+        public int cod_produto { get; set; }
         public string nome { get; set; }
         public string tipo { get; set; }
         public string valor { get; set; }
@@ -25,13 +25,13 @@ namespace lojaUtilidades
             int id = 0;
             try
             {
-                _sql = string.Format("INSERT INTO produto(nome, tipo, valor, departamento) VALUES ('{0}', '{1}', '{2}', '{3}', '{4})", nome, tipo, valor, departamento) + "; SElECT SCOPE_IDENTITY();";
+                _sql = string.Format("INSERT INTO produtos(nome, tipo, valor, departamento) VALUES ('{0}', '{1}', '{2}', '{3}')", nome, tipo, valor, departamento) + "; SElECT SCOPE_IDENTITY();";
                 ExecutaComando(false, out id);
 
                 if (id > 0)
                 {
                     string cod = Convert.ToString(id);
-                    MessageBox.Show(string.Format("produto cadastrado com sucesso!\nCódigo do cliente é {0}", cod), "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(string.Format("produto cadastrado com sucesso!\nCódigo do produto é {0}", cod), "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
@@ -45,11 +45,11 @@ namespace lojaUtilidades
             }
             return id;
         }
-        public DataTable PesquisarCliente(string nomeProduto)
+        public DataTable PesquisarProduto(string nomeProduto)
         {
             try
             {
-                _sql = string.Format("SELECT * FROM produto WHERE nome LIKE '%{0}%'", nomeProduto);
+                _sql = string.Format("SELECT * FROM produtos WHERE nome LIKE '%{0}%'", nomeProduto);
                 return ExecutaSelect();
             }
             catch (Exception)
@@ -69,12 +69,12 @@ namespace lojaUtilidades
             {
                 if (id < 0)
                 {
-                    _sql = "SELECT * FROM produto ORDER BY nome";
+                    _sql = "SELECT * FROM produtos ORDER BY nome";
                     return ExecutaSelect();
                 }
                 else
                 {
-                    _sql = string.Format("SELECT * FROM produto  WHERE cod_produto = {0}ORDER BY nome", id);
+                    _sql = string.Format("SELECT * FROM produtos  WHERE cod_produto = {0} ORDER BY nome", id);
                     return ExecutaSelect();
                 }
 
@@ -94,7 +94,7 @@ namespace lojaUtilidades
                 int exOK = 0;
 
 
-                _sql = string.Format("UPDATE produto SET nome = '{0}', tipo = '{1}', valor = '{2}', departamento = '{3}'WHERE cod_produto = '{10}'", nome, tipo, valor, departamento, cod_cliente);
+                _sql = string.Format("UPDATE produtos SET nome = '{0}', tipo = '{1}', valor = '{2}', departamento = '{3}' WHERE cod_produto = '{4}'", nome, tipo, valor, departamento, cod_produto);
 
                 exOK = ExecutaComando(false);
 
@@ -119,7 +119,7 @@ namespace lojaUtilidades
             try
             {
                 int exOK = 0;
-                _sql = "DELETE FROM produto where cOD_Produto = " + id;
+                _sql = "DELETE FROM produtos where cOD_Produto = " + id;
 
                 exOK = ExecutaComando(false);
 
